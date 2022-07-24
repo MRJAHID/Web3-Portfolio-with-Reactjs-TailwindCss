@@ -1,8 +1,11 @@
 import Spline from '@splinetool/react-spline';
 import {useState} from 'react';
-import {IoMenu} from 'react-icons/io5';
+import {IoCodeWorking, IoMenu} from 'react-icons/io5';
 import SCENE_OBJECT from './img/scene.spline';
 import JAHID from './img/1584257810706.jpg';
+import {VerticalTimeline, VerticalTimelineElement} from 'react-vertical-timeline-component';
+import 'react-vertical-timeline-component/style.min.css';
+import {Experience} from "./data";
 
 
 function App() {
@@ -111,20 +114,62 @@ function App() {
             {/*    Main section*/}
             <main className='w-[80%] mt-5'>
                 {/*    About section*/}
-                <section id='about' className='w-full grid grid-col-1 md:grid-col-2 gap-4 my-24'>
+                <section id='about' className='w-full flex flex-col md:flex-row gap-4 my-24'>
                     {/*image box*/}
                     <div className='w-full h-420 flex items-center justify-center '>
                         <div className='w-275 h-340 bg-emerald-200 rounded-md relative'>
                             <img src={JAHID}
-                                 className='w-full h-full absolute -right-4 top-4 object-cover rounded-lg drop-shadow-2xl'
+                                 className='w-full h-full absolute -right-4 top-4 object-cover rounded-lg shadow-lg'
                                  alt='PROFILE'/>
                         </div>
 
                     </div>
                     {/*Content box*/}
-                    <div className=''>
+                    <div className='w-full h-420 flex flex-col items-center justify-center '>
+                        <p className='text-lg text-textBase text-center'>
+                            lorem ipsum dolor sit amet, consectetur adip, lorem ipsum dolor sit amet, consectetur
+                            adip,lorem ipsum dolor sit amet, consectetur adip,lorem ipsum dolor sit amet, consectetur
+                            adip,lorem ipsum dolor sit amet, consectetur adip,lorem ipsum dolor sit amet, consectetur
+                            adip,lorem ipsum dolor sit amet, consectetur adip,lorem ipsum dolor sit amet, consectetur
+                        </p>
 
+                        <button
+                            className="w-full md:w-auto relative mt-6 inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:ring-green-200 dark:focus:ring-green-800 hover:shadow-lg hover:shadow-teal-500/50 hover:dark:shadow-lg hover:dark:shadow-teal-800/80">
+                                <span
+                                    className="w-full md:w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                                  Download
+                                </span>
+                        </button>
                     </div>
+                </section>
+
+                {/*    Timeline  */}
+                <section className='w-full flex items-center justify-center'>
+                    <VerticalTimeline>
+                        {
+                            Experience && Experience.map(n => (
+                                <VerticalTimelineElement
+                                    key={n.id}
+                                    className="vertical-timeline-element--work"
+                                    contentStyle={{background: 'rgb(21,24,31)', color: '#888'}}
+                                    contentArrowStyle={{borderRight: '7px solid  rgb(21,24,31)'}}
+                                    date={n.date}
+                                    iconStyle={{background: 'rgb(21,24,31)', color: '#888'}}
+                                    icon={<IoCodeWorking/>}
+                                >
+                                    <h3 className="vertical-timeline-element-title">
+                                        {n.title}
+                                    </h3>
+                                    <h4 className="vertical-timeline-element-subtitle">
+                                        {n.location}</h4>
+                                    <p>
+                                        {n.description}
+                                    </p>
+                                </VerticalTimelineElement>
+                            ))
+                        }
+
+                    </VerticalTimeline>
                 </section>
             </main>
         </div>
